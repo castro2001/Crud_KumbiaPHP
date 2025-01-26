@@ -1,0 +1,31 @@
+<section class="card">
+    <header class="card-header">
+        <div class="d-flex  justify-content-around">
+        <h1><?= $title ?></h1>
+        <a href="<?= PUBLIC_PATH.$title ?>/crear" class="btn btn-warning fs-5">Crear Nuevo <?= $title ?></a>
+        </div>
+
+    </header>
+
+    <div class="card-body">
+        <table class="table table-striped table-bordered">
+            <thead>
+                <tr>
+                    <?php foreach ($Campos as $campo => $valor) : ?>
+                        <th scope="col"><?= $campo ?></th>
+                    <?php endforeach; ?>
+                </tr>
+            </thead>
+            <tbody>
+                <?php foreach ($Models as $Model) : ?>
+                    <tr>
+                        <?php foreach ($Campos as $campo => $valor) : ?>
+                            <td><?= $Model->$campo ?></td>
+                            <?php endforeach; ?>
+                            <td><?= View::partial('components/buttons',false,['title'=>$title,'id'=>$Model->id]) ?></td>
+                        </tr>
+                <?php endforeach; ?>
+            </tbody>
+        </table>
+    </div>
+</section>

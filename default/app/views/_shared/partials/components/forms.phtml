@@ -1,0 +1,26 @@
+<div class="container-lg w-50 lg:w-100">
+    <h2 class="text-center"> Crear Nuevo <?= ucwords($title)?></h2>
+<div class="row  ">
+<?= Form::openMultipart($Action) ?>
+<?php foreach ($Campos as $campo => $valor) : ?>
+    <div class="mb-3">
+        <?= Form::label($campo,$title.'_'.$campo,['class'=>'form-label'] ) ?>
+        <?php  if($campo ==='imagen' ):?>
+            <?= Form::file($title.'.'.$valor,['class'=>'form-control']) ?>
+        <?php elseif ($campo === 'descripcion') : ?>
+                <?= Form::textarea($title.'.'.$valor,  ['class' => 'form-control', 'rows' => 2]) ?>
+        <?php elseif ($campo === 'precio') : ?>
+            <!-- Campo numérico -->
+            <?= Form::number($title.'.'.$valor,  ['class' => 'form-control', 'step' => '0.01']) ?>
+        <?php else : ?>
+            <!-- Campo de texto para otros casos -->
+            <?= Form::text($title.'.'.$valor, ['class' => 'form-control']) ?>
+        <?php  endif ?>
+    </div>
+  
+    <?php endforeach; ?>
+    <div class="mb-3">
+        <?= Form::submit('Crear',['class'=>'btn btn-warning']) ?>
+        </div>
+</div>
+</div>
